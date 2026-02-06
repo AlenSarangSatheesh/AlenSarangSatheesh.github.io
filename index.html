@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alen Sarang Satheesh | Web Penetration Tester</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff41;
+            /* Cyberpunk Green */
+            --secondary-bg: #111;
+            --card-bg: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+            /* Monospace for security vibe */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--secondary-bg);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+            padding-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* About & Skills */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid #333;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-color);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .project-card h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .project-links {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Contact */
+        .contact {
+            background-color: var(--secondary-bg);
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            font-size: 2rem;
+        }
+
+        .social-links a {
+            margin: 0 15px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+
+            /* Simplified for single file demo */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">&lt;AlenSarang /&gt;</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <p>Hello, I am</p>
+        <h1>Alen Sarang <span>Satheesh</span></h1>
+        <h2>Web Penetration Tester & Security Researcher</h2>
+        <p style="max-width: 600px; margin-bottom: 2rem;">
+            Focused on offensive security and tool development. I break systems to help make them stronger.
+        </p>
+        <a href="#contact" class="btn">Get in Touch</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">01. About Me</h2>
+        <div class="about-content">
+            <div>
+                <p>
+                    I am a passionate security researcher specializing in Web Penetration Testing. My work involves
+                    identifying vulnerabilities, developing security tools, and ensuring system integrity against cyber
+                    threats.
+                </p>
+                <br>
+                <p>
+                    I hold a BCA from Bangalore North University (2020–2023). My approach combines manual testing
+                    methodologies with automated tools to uncover critical security flaws.
+                </p>
+            </div>
+            <div>
+                <h3>Technical Arsenal</h3>
+                <br>
+                <div class="skills-grid">
+                    <span class="skill-tag">Burp Suite</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Nmap</span>
+                    <span class="skill-tag">Metasploit</span>
+                    <span class="skill-tag">Bash Scripting</span>
+                    <span class="skill-tag">HTML/CSS/JS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">02. Selected Projects</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <h3>Burp Suite Logger Extension</h3>
+                <p>
+                    A custom extension developed for Burp Suite to enhance logging capabilities during penetration
+                    testing engagements. Improves data analysis and reporting efficiency.
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/AlenSarangSatheesh/" target="_blank"><i class="fab fa-github"></i> View
+                        Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Auto WhatsApp Sender</h3>
+                <p>
+                    An automated tool designed to simulate human-like interaction for WhatsApp messaging. developed
+                    using Python, focusing on behavior simulation and automation logic.
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/AlenSarangSatheesh/" target="_blank"><i class="fab fa-github"></i> View
+                        Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Swing Trading Platform</h3>
+                <p>
+                    A competition platform built for swing traders. Features user management, real-time data tracking,
+                    and leaderboard functionality.
+                </p>
+                <div class="project-links">
+                    <a href="https://github.com/AlenSarangSatheesh/" target="_blank"><i class="fab fa-github"></i> View
+                        Code</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">03. Get In Touch</h2>
+        <p>Currently open for opportunities in Application Security and Penetration Testing.</p>
+
+        <div style="margin-top: 2rem;">
+            <a href="mailto:alensarangsatheesh@gmail.com" class="btn">Say Hello</a>
+        </div>
+
+        <div class="social-links">
+            <a href="https://github.com/AlenSarangSatheesh/" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/alen-sarang-satheesh" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:alensarangsatheesh@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+
+        <footer style="margin-top: 5rem; font-size: 0.8rem; color: #666;">
+            <p>&copy; 2026 Alen Sarang Satheesh. Built for Security.</p>
+        </footer>
+    </section>
+
+</body>
+
+</html>
