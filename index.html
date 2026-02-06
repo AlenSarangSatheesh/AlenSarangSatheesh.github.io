@@ -4,534 +4,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Alen Sarang Satheesh - Penetration Tester & Cybersecurity Specialist. Web application security, vulnerability assessment, and security tool development.">
-  <meta name="keywords"
-    content="penetration tester, cybersecurity, web security, Burp Suite, vulnerability assessment, ethical hacking">
-  <meta name="author" content="Alen Sarang Satheesh">
-  <title>Alen Sarang Satheesh | Penetration Tester</title>
+  <title>Alen Sarang Satheesh | Security Engineer</title>
+  <meta name="description" content="Security Engineer & Penetration Tester building robust tools and securing systems.">
+
+  <!-- Fonts: Inter (Sans) & JetBrains Mono (Code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="mediaqueries.css">
 </head>
 
 <body>
-  <!-- Animated Background -->
-  <div class="matrix-bg" id="matrix-bg"></div>
 
   <!-- Navigation -->
-  <nav id="desktop-nav">
-    <div class="logo">
-      <span class="logo-bracket">[</span>
-      <span class="logo-text">ASS</span>
-      <span class="logo-bracket">]</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#skills" class="nav-link">Skills</a></li>
-      <li><a href="#projects" class="nav-link">Projects</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Mobile Navigation -->
-  <nav id="hamburger-nav">
-    <div class="logo">
-      <span class="logo-bracket">[</span>
-      <span class="logo-text">ASS</span>
-      <span class="logo-bracket">]</span>
-    </div>
-    <div class="hamburger-menu">
-      <div class="hamburger-icon" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="menu-links">
-        <a href="#about" onclick="toggleMenu()">About</a>
-        <a href="#skills" onclick="toggleMenu()">Skills</a>
-        <a href="#projects" onclick="toggleMenu()">Projects</a>
-        <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <nav class="navbar">
+    <div class="nav-content">
+      <a href="#" class="logo">alen.security</a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn-sm">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section id="hero">
-    <div class="hero-content">
-      <div class="terminal-header">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">~/alen-sarang-satheesh</span>
-      </div>
-      <div class="terminal-body">
-        <p class="terminal-line">
-          <span class="prompt">root@kali:~$</span>
-          <span class="command typing" id="typing-text"></span>
-          <span class="cursor">|</span>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-badge">
+          <span class="status-dot"></span> Available for new projects
+        </div>
+        <h1 class="hero-title">Construction Secure <br> <span class="text-gradient">Digital Infrastructures</span></h1>
+        <p class="hero-subtitle">
+          I am a <strong>Security Engineer</strong> and <strong>Penetration Tester</strong>.
+          I specialize in offensive security, vulnerability assessment, and building automated defense tools.
         </p>
-      </div>
-      <div class="hero-info">
-        <h1 class="glitch" data-text="Alen Sarang Satheesh">Alen Sarang Satheesh</h1>
-        <h2 class="hero-subtitle">
-          <span class="highlight">Penetration Tester</span> |
-          <span class="highlight-alt">Web Security Specialist</span>
-        </h2>
-        <p class="hero-description">
-          Breaking systems to make them stronger. Specialized in web application security,
-          vulnerability assessment, and building security automation tools.
-        </p>
-        <div class="hero-buttons">
-          <a href="./assets/Alen Sarang Satheesh.pdf" class="btn btn-primary" download>
-            <span class="btn-icon">📄</span> Download CV
-          </a>
-          <a href="#contact" class="btn btn-secondary">
-            <span class="btn-icon">💬</span> Contact Me
-          </a>
-        </div>
-        <div class="social-links">
-          <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="social-link" title="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-            </svg>
-          </a>
-          <a href="https://www.linkedin.com/in/alen-sarang-satheesh/" target="_blank" class="social-link"
-            title="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-            </svg>
-          </a>
-          <a href="mailto:alensarangsatheesh@gmail.com" class="social-link" title="Email">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-            </svg>
-          </a>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary">View my work</a>
+          <a href="./assets/Alen Sarang Satheesh.pdf" class="btn btn-secondary" target="_blank">Resume <span
+              class="arrow">↗</span></a>
         </div>
       </div>
-    </div>
-    <div class="scroll-indicator">
-      <span>Scroll Down</span>
-      <div class="scroll-arrow"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- About Section -->
-  <section id="about">
-    <div class="section-header">
-      <span class="section-tag">&lt;about&gt;</span>
-      <h2 class="section-title">About Me</h2>
-    </div>
-    <div class="about-container">
-      <div class="about-image">
-        <div class="image-frame">
-          <img src="./assets/profile-pic.png" alt="Alen Sarang Satheesh">
-          <div class="image-overlay"></div>
-        </div>
+    <!-- Selected Work (Bento Grid) -->
+    <section id="work" class="work-section">
+      <div class="section-header">
+        <h2>Selected Work</h2>
+        <p>Engineering robust security solutions.</p>
       </div>
-      <div class="about-content">
-        <div class="about-text">
-          <p>
-            I'm a <span class="highlight">Penetration Tester</span> passionate about uncovering vulnerabilities
-            in web applications and building tools that make security testing more efficient.
-          </p>
-          <p>
-            My expertise spans across <span class="highlight-alt">web application security</span>,
-            <span class="highlight-alt">vulnerability assessment</span>, and
-            <span class="highlight-alt">security automation</span>. I specialize in identifying
-            OWASP Top 10 vulnerabilities, crafting custom exploitation techniques, and developing
-            Burp Suite extensions to enhance penetration testing workflows.
-          </p>
-          <p>
-            Currently focused on expanding my offensive security toolkit and contributing to the
-            cybersecurity community through open-source security tools and research.
-          </p>
-        </div>
-        <div class="about-stats">
-          <div class="stat-card">
-            <div class="stat-icon">🔓</div>
-            <div class="stat-info">
-              <span class="stat-number">17+</span>
-              <span class="stat-label">Security Projects</span>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">🎓</div>
-            <div class="stat-info">
-              <span class="stat-number">BCA</span>
-              <span class="stat-label">Bachelor's Degree</span>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">🛡️</div>
-            <div class="stat-info">
-              <span class="stat-number">OWASP</span>
-              <span class="stat-label">Top 10 Expert</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <span class="section-tag">&lt;/about&gt;</span>
-  </section>
 
-  <!-- Skills Section -->
-  <section id="skills">
-    <div class="section-header">
-      <span class="section-tag">&lt;skills&gt;</span>
-      <h2 class="section-title">Technical Arsenal</h2>
-    </div>
-    <div class="skills-container">
-      <!-- Security Tools -->
-      <div class="skill-category">
-        <h3 class="category-title">
-          <span class="category-icon">🔧</span>
-          Security Tools
-        </h3>
+      <div class="bento-grid">
+        <!-- Project 1: Burp Logger (Large Card) -->
+        <div class="card featured-card">
+          <div class="card-content">
+            <div class="card-header">
+              <span class="tag">Burp Suite Extension</span>
+              <span class="tag">Jython</span>
+            </div>
+            <h3>Enhanced Request Logger</h3>
+            <p>A sophisticated Burp Suite extension for advanced HTTP traffic analysis. Features regex filtering,
+              automated deduplication, and export capabilities for penetration testing workflows.</p>
+            <div class="tech-stack">
+              <span>Python</span>
+              <span>Java Swing</span>
+              <span>Burp API</span>
+            </div>
+            <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="card-link">View Source</a>
+          </div>
+        </div>
+
+        <!-- Project 2: VulnScanner (Medium Card) -->
+        <div class="card">
+          <div class="card-content">
+            <div class="card-header">
+              <span class="tag">Automation</span>
+            </div>
+            <h3>VulnScanner AI</h3>
+            <p>Automated vulnerability scanner integrating ML for intelligent threat detection and reporting.</p>
+            <div class="tech-stack">
+              <span>Python</span>
+              <span>Machine Learning</span>
+            </div>
+            <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="card-link">View Source</a>
+          </div>
+        </div>
+
+        <!-- Project 3: Log Analyzer (Medium Card) -->
+        <div class="card">
+          <div class="card-content">
+            <div class="card-header">
+              <span class="tag">Forensics</span>
+            </div>
+            <h3>Web Log Analyzer</h3>
+            <p>Forensic tool for parsing server logs to identify attack vectors and security anomalies.</p>
+            <div class="tech-stack">
+              <span>Python</span>
+              <span>Regex</span>
+              <span>Data Analysis</span>
+            </div>
+            <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="card-link">View Source</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="about" class="skills-section">
+      <div class="skills-container">
+        <div class="skills-text">
+          <h2>Technical Arsenal</h2>
+          <p>My toolkit for securing applications and infrastructure.</p>
+        </div>
         <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-name">Burp Suite</div>
-            <div class="skill-level expert">Expert</div>
+          <div class="skill-category">
+            <h3>Offensive Security</h3>
+            <ul>
+              <li>Burp Suite Professional</li>
+              <li>OWASP ZAP</li>
+              <li>Metasploit Framework</li>
+              <li>SQLMap</li>
+              <li>Nmap / Masscan</li>
+            </ul>
           </div>
-          <div class="skill-item">
-            <div class="skill-name">OWASP ZAP</div>
-            <div class="skill-level advanced">Advanced</div>
+          <div class="skill-category">
+            <h3>Languages</h3>
+            <ul>
+              <li>Python (Automation)</li>
+              <li>Bash Scripting</li>
+              <li>JavaScript / Node.js</li>
+              <li>SQL</li>
+              <li>Java (Basic)</li>
+            </ul>
           </div>
-          <div class="skill-item">
-            <div class="skill-name">Nmap</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Metasploit</div>
-            <div class="skill-level intermediate">Intermediate</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Wireshark</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">SQLMap</div>
-            <div class="skill-level advanced">Advanced</div>
+          <div class="skill-category">
+            <h3>Infrastructure</h3>
+            <ul>
+              <li>Linux / Kali</li>
+              <li>Docker / Containers</li>
+              <li>Git / GitHub</li>
+              <li>AWS (Basic)</li>
+            </ul>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Web Vulnerabilities -->
-      <div class="skill-category">
-        <h3 class="category-title">
-          <span class="category-icon">🕷️</span>
-          Web Vulnerabilities
-        </h3>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-name">SQL Injection</div>
-            <div class="skill-level expert">Expert</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">XSS</div>
-            <div class="skill-level expert">Expert</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">CSRF</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">IDOR</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Authentication Bypass</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Command Injection</div>
-            <div class="skill-level intermediate">Intermediate</div>
+    <!-- Contact / Footer -->
+    <footer id="contact" class="footer">
+      <div class="footer-container">
+        <div class="footer-main">
+          <h2>Let's build something secure.</h2>
+          <p>Open for penetration testing roles and security engineering opportunities.</p>
+          <a href="mailto:alensarangsatheesh@gmail.com" class="btn btn-primary">alensarangsatheesh@gmail.com</a>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Alen Sarang Satheesh</p>
+          <div class="social-links">
+            <a href="https://github.com/AlenSarangSatheesh" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/alen-sarang-satheesh/" target="_blank">LinkedIn</a>
           </div>
         </div>
       </div>
+    </footer>
 
-      <!-- Programming -->
-      <div class="skill-category">
-        <h3 class="category-title">
-          <span class="category-icon">💻</span>
-          Programming
-        </h3>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-name">Python</div>
-            <div class="skill-level expert">Expert</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">JavaScript</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Bash Scripting</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">SQL</div>
-            <div class="skill-level expert">Expert</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Java/Jython</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">HTML/CSS</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Platforms -->
-      <div class="skill-category">
-        <h3 class="category-title">
-          <span class="category-icon">🖥️</span>
-          Platforms & OS
-        </h3>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <div class="skill-name">Kali Linux</div>
-            <div class="skill-level expert">Expert</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Docker</div>
-            <div class="skill-level intermediate">Intermediate</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Git/GitHub</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-name">Linux Administration</div>
-            <div class="skill-level advanced">Advanced</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <span class="section-tag">&lt;/skills&gt;</span>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="section-header">
-      <span class="section-tag">&lt;projects&gt;</span>
-      <h2 class="section-title">Security Projects</h2>
-    </div>
-    <div class="projects-container">
-      <!-- Project 1: Burp Logger -->
-      <div class="project-card featured">
-        <div class="project-image">
-          <div class="project-placeholder">
-            <span class="placeholder-icon">🔍</span>
-          </div>
-          <div class="project-overlay">
-            <span class="project-tag">Featured</span>
-          </div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Burp Suite Logger Extension</h3>
-          <p class="project-description">
-            A powerful Burp Suite extension for enhanced HTTP request/response logging with
-            advanced filtering (status codes, MIME types, regex), deduplication, and one-click
-            export. Features Send to Repeater/Intruder integration and real-time size tracking.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python/Jython</span>
-            <span class="tech-tag">Burp Suite API</span>
-            <span class="tech-tag">Java Swing</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-              View Code
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2: VulnScanner AI -->
-      <div class="project-card">
-        <div class="project-image">
-          <div class="project-placeholder">
-            <span class="placeholder-icon">🤖</span>
-          </div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">VulnScanner AI</h3>
-          <p class="project-description">
-            AI-powered web vulnerability scanner with intelligent analysis capabilities.
-            Supports importing Burp Suite exports for automated vulnerability detection
-            and comprehensive security reporting.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Machine Learning</span>
-            <span class="tech-tag">Web Security</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-              View Code
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 3: Web Log Analyzer -->
-      <div class="project-card">
-        <div class="project-image">
-          <div class="project-placeholder">
-            <span class="placeholder-icon">📊</span>
-          </div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Security Log Analyzer</h3>
-          <p class="project-description">
-            Comprehensive web application log analysis tool for identifying security
-            vulnerabilities, suspicious patterns, and potential attack vectors in
-            server access logs.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Log Analysis</span>
-            <span class="tech-tag">Threat Detection</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-              View Code
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4: Security Automation Scripts -->
-      <div class="project-card">
-        <div class="project-image">
-          <div class="project-placeholder">
-            <span class="placeholder-icon">⚡</span>
-          </div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Security Automation Suite</h3>
-          <p class="project-description">
-            Collection of Python automation scripts for security testing workflows including
-            data scraping, phone number extraction from screenshots, and trading platform
-            integrations.
-          </p>
-          <div class="project-tech">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Automation</span>
-            <span class="tech-tag">OCR</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="project-link">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-              View Code
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="projects-cta">
-      <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="btn btn-outline">
-        View All Projects on GitHub →
-      </a>
-    </div>
-    <span class="section-tag">&lt;/projects&gt;</span>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="section-header">
-      <span class="section-tag">&lt;contact&gt;</span>
-      <h2 class="section-title">Get In Touch</h2>
-    </div>
-    <div class="contact-container">
-      <div class="contact-info">
-        <h3>Let's Work Together</h3>
-        <p>
-          Interested in collaborating on security projects, hiring for penetration testing roles,
-          or just want to discuss cybersecurity? Feel free to reach out!
-        </p>
-        <div class="contact-methods">
-          <a href="mailto:alensarangsatheesh@gmail.com" class="contact-method">
-            <div class="contact-icon">📧</div>
-            <div class="contact-details">
-              <span class="contact-label">Email</span>
-              <span class="contact-value">alensarangsatheesh@gmail.com</span>
-            </div>
-          </a>
-          <a href="https://www.linkedin.com/in/alen-sarang-satheesh/" target="_blank" class="contact-method">
-            <div class="contact-icon">💼</div>
-            <div class="contact-details">
-              <span class="contact-label">LinkedIn</span>
-              <span class="contact-value">alen-sarang-satheesh</span>
-            </div>
-          </a>
-          <a href="https://github.com/AlenSarangSatheesh" target="_blank" class="contact-method">
-            <div class="contact-icon">🐙</div>
-            <div class="contact-details">
-              <span class="contact-label">GitHub</span>
-              <span class="contact-value">AlenSarangSatheesh</span>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="contact-terminal">
-        <div class="terminal-header">
-          <span class="terminal-dot red"></span>
-          <span class="terminal-dot yellow"></span>
-          <span class="terminal-dot green"></span>
-          <span class="terminal-title">contact.sh</span>
-        </div>
-        <div class="terminal-body">
-          <p><span class="prompt">$</span> echo "Let's connect!"</p>
-          <p class="output">Let's connect!</p>
-          <p><span class="prompt">$</span> whoami</p>
-          <p class="output">alen-sarang-satheesh</p>
-          <p><span class="prompt">$</span> cat interests.txt</p>
-          <p class="output">Web Security, Pentesting, CTF, Tool Development</p>
-          <p><span class="prompt">$</span> <span class="cursor-blink">_</span></p>
-        </div>
-      </div>
-    </div>
-    <span class="section-tag">&lt;/contact&gt;</span>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <p class="copyright">
-        <span class="code-comment">// Built with ❤️ and ☕</span><br>
-        © 2024 Alen Sarang Satheesh. All rights reserved.
-      </p>
-      <p class="footer-quote">
-        "Security is not a product, but a process." - Bruce Schneier
-      </p>
-    </div>
-  </footer>
+  </main>
 
   <script src="script.js"></script>
 </body>
