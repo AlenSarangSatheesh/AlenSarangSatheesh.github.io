@@ -5,195 +5,771 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alen Sarang Satheesh | Web Penetration Tester</title>
+    <meta name="description"
+        content="Web Penetration Tester & Security Researcher specializing in offensive security, vulnerability assessment, and security tool development.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --text-color: #e0e0e0;
+            --bg-color: #0a0a0f;
+            --text-color: #c0c0c0;
             --accent-color: #00ff41;
-            /* Cyberpunk Green */
-            --secondary-bg: #111;
-            --card-bg: #1a1a1a;
+            --accent-glow: rgba(0, 255, 65, 0.5);
+            --secondary-accent: #00d4ff;
+            --tertiary-accent: #ff0055;
+            --secondary-bg: rgba(10, 10, 15, 0.95);
+            --card-bg: rgba(15, 15, 25, 0.9);
+            --border-color: #1a1a2e;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', monospace;
-            /* Monospace for security vibe */
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
+            font-family: 'Fira Code', monospace;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.8;
+            overflow-x: hidden;
+            position: relative;
         }
 
+        /* Matrix Rain Background */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Scanlines Overlay */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.1) 0px,
+                    rgba(0, 0, 0, 0.1) 1px,
+                    transparent 1px,
+                    transparent 2px);
+        }
+
+        /* CRT Flicker Effect */
+        .crt-flicker {
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% {
+                opacity: 0.97;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.98;
+            }
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            color: var(--secondary-accent);
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            color: var(--tertiary-accent);
+        }
+
+        @keyframes glitch-1 {
+
+            0%,
+            100% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-3px, 3px);
+            }
+
+            40% {
+                transform: translate(-3px, -3px);
+            }
+
+            60% {
+                transform: translate(3px, 3px);
+            }
+
+            80% {
+                transform: translate(3px, -3px);
+            }
+        }
+
+        @keyframes glitch-2 {
+
+            0%,
+            100% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(3px, -3px);
+            }
+
+            40% {
+                transform: translate(3px, 3px);
+            }
+
+            60% {
+                transform: translate(-3px, -3px);
+            }
+
+            80% {
+                transform: translate(-3px, 3px);
+            }
+        }
+
+        @keyframes glitch-skew {
+
+            0%,
+            100% {
+                transform: skew(0deg);
+            }
+
+            30% {
+                transform: skew(0.5deg);
+            }
+
+            60% {
+                transform: skew(-0.5deg);
+            }
+        }
+
+        /* Typing Animation */
+        .typing-text {
+            overflow: hidden;
+            border-right: 3px solid var(--accent-color);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: var(--accent-color);
+            }
+        }
+
+        /* Neon Glow Text */
+        .neon-text {
+            color: var(--accent-color);
+            text-shadow:
+                0 0 5px var(--accent-color),
+                0 0 10px var(--accent-color),
+                0 0 20px var(--accent-color),
+                0 0 40px var(--accent-color);
+        }
+
+        .neon-text-cyan {
+            color: var(--secondary-accent);
+            text-shadow:
+                0 0 5px var(--secondary-accent),
+                0 0 10px var(--secondary-accent),
+                0 0 20px var(--secondary-accent);
+        }
+
+        /* Links */
         a {
             text-decoration: none;
             color: var(--text-color);
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
         a:hover {
             color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
         /* Header */
         header {
-            background-color: var(--secondary-bg);
+            background: linear-gradient(180deg, rgba(10, 10, 15, 0.98) 0%, rgba(10, 10, 15, 0.9) 100%);
             padding: 1rem 5%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-glow);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            backdrop-filter: blur(10px);
         }
 
         .logo {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-glow);
+            letter-spacing: 2px;
+        }
+
+        .logo::before {
+            content: '> ';
+            color: var(--secondary-accent);
         }
 
         nav ul {
             display: flex;
             list-style: none;
+            gap: 2rem;
         }
 
-        nav ul li {
-            margin-left: 2rem;
+        nav ul li a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            border: 1px solid var(--accent-color);
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
             padding: 0 10%;
-            padding-top: 60px;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .terminal-prompt {
+            color: var(--secondary-accent);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .terminal-prompt::before {
+            content: 'root@kali:~$ ';
+            color: var(--accent-color);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
             margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
         }
 
         .hero h1 span {
             color: var(--accent-color);
+            text-shadow: 0 0 20px var(--accent-glow);
         }
 
         .hero h2 {
-            font-size: 2rem;
-            color: #888;
+            font-size: 1.5rem;
+            color: var(--secondary-accent);
             margin-bottom: 2rem;
+            font-weight: 400;
+            border-left: 3px solid var(--tertiary-accent);
+            padding-left: 1rem;
         }
 
-        .btn {
-            padding: 10px 25px;
-            border: 1px solid var(--accent-color);
+        .hero-description {
+            max-width: 650px;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        .hero-description code {
             color: var(--accent-color);
-            font-weight: bold;
+            background: rgba(0, 255, 65, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 15px 40px;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
             background: var(--accent-color);
             color: #000;
+            box-shadow: 0 0 30px var(--accent-glow), inset 0 0 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            border-color: var(--secondary-accent);
+            color: var(--secondary-accent);
+            margin-left: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-accent);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
         }
 
         /* Section Styling */
         section {
-            padding: 5rem 10%;
+            padding: 6rem 10%;
+            position: relative;
         }
 
         .section-title {
+            font-family: 'Orbitron', sans-serif;
             font-size: 2rem;
             margin-bottom: 3rem;
-            border-bottom: 2px solid var(--accent-color);
             display: inline-block;
-            padding-bottom: 5px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
-        /* About & Skills */
+        .section-title::before {
+            content: attr(data-num);
+            color: var(--accent-color);
+            margin-right: 1rem;
+            font-size: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Terminal Box */
+        .terminal-box {
+            background: linear-gradient(135deg, rgba(15, 15, 25, 0.95) 0%, rgba(10, 10, 15, 0.98) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-header {
+            background: linear-gradient(90deg, #1a1a2e 0%, #16162a 100%);
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-btn.red {
+            background: #ff5f56;
+        }
+
+        .terminal-btn.yellow {
+            background: #ffbd2e;
+        }
+
+        .terminal-btn.green {
+            background: #27ca40;
+        }
+
+        .terminal-title {
+            margin-left: auto;
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 2;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .terminal-line::before {
+            content: '$ ';
+            color: var(--accent-color);
+        }
+
+        .terminal-output {
+            color: #666;
+            padding-left: 1rem;
+        }
+
+        /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
+            align-items: start;
         }
 
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #999;
+        }
+
+        .about-text strong {
+            color: var(--accent-color);
+        }
+
+        /* Skills Grid */
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .skill-tag {
-            background: var(--card-bg);
-            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+            padding: 10px 20px;
             border-radius: 4px;
-            border: 1px solid #333;
+            border: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '>';
+            color: var(--accent-color);
+            margin-right: 8px;
+            opacity: 0;
+            transition: 0.3s;
         }
 
         .skill-tag:hover {
             border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateX(5px);
+        }
+
+        .skill-tag:hover::before {
+            opacity: 1;
         }
 
         /* Projects */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
         .project-card {
-            background: var(--card-bg);
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(10, 10, 20, 0.95) 100%);
             padding: 2rem;
-            border: 1px solid #333;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
-            transition: transform 0.3s;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
+            opacity: 0;
+            transition: 0.3s;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0, 255, 65, 0.1);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
         }
 
         .project-card h3 {
+            font-family: 'Orbitron', sans-serif;
             margin-bottom: 1rem;
-            color: var(--accent-color);
+            color: #fff;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .project-card p {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech span {
+            font-size: 0.75rem;
+            color: var(--secondary-accent);
+            background: rgba(0, 212, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 3px;
         }
 
         .project-links {
-            margin-top: 1.5rem;
             font-size: 0.9rem;
+        }
+
+        .project-links a {
+            color: var(--accent-color);
+            margin-right: 1.5rem;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
         }
 
         /* Contact */
         .contact {
-            background-color: var(--secondary-bg);
+            background: linear-gradient(180deg, var(--bg-color) 0%, rgba(15, 15, 25, 1) 100%);
             text-align: center;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(180deg, var(--accent-color), transparent);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            color: #777;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
         }
 
         .social-links {
-            margin-top: 2rem;
-            font-size: 2rem;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
         }
 
         .social-links a {
-            margin: 0 15px;
+            font-size: 1.8rem;
+            color: #555;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            border: 1px solid transparent;
+            border-radius: 50%;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            color: #444;
+        }
+
+        footer span {
+            color: var(--accent-color);
+        }
+
+        /* Floating Elements */
+        .floating-code {
+            position: fixed;
+            font-size: 0.7rem;
+            color: rgba(0, 255, 65, 0.1);
+            pointer-events: none;
+            z-index: -1;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #444;
+            font-size: 0.8rem;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            margin-top: 0.5rem;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
         }
 
         /* Mobile Responsiveness */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -202,106 +778,193 @@
                 grid-template-columns: 1fr;
             }
 
-            nav {
+            nav ul {
                 display: none;
             }
 
-            /* Simplified for single file demo */
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-accent);
         }
     </style>
 </head>
 
-<body>
+<body class="crt-flicker">
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix-bg"></canvas>
+
+    <!-- Scanlines Overlay -->
+    <div class="scanlines"></div>
 
     <header>
-        <div class="logo">&lt;AlenSarang /&gt;</div>
+        <div class="logo">AlenSarang_</div>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">[About]</a></li>
+                <li><a href="#projects">[Projects]</a></li>
+                <li><a href="#contact">[Contact]</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <p>Hello, I am</p>
-        <h1>Alen Sarang <span>Satheesh</span></h1>
-        <h2>Web Penetration Tester & Security Researcher</h2>
-        <p style="max-width: 600px; margin-bottom: 2rem;">
-            Focused on offensive security and tool development. I break systems to help make them stronger.
+        <p class="terminal-prompt">whoami</p>
+        <h1 class="glitch" data-text="Alen Sarang Satheesh">Alen Sarang <span>Satheesh</span></h1>
+        <h2>// Web Penetration Tester & Security Researcher</h2>
+        <p class="hero-description">
+            Focused on <code>offensive security</code> and <code>tool development</code>.
+            I break systems to help make them stronger. Specialized in identifying vulnerabilities
+            before the bad actors do.
         </p>
-        <a href="#contact" class="btn">Get in Touch</a>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn">Initialize_Contact()</a>
+            <a href="#projects" class="btn btn-secondary">View_Projects()</a>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </section>
 
     <section id="about">
-        <h2 class="section-title">01. About Me</h2>
+        <h2 class="section-title" data-num="01.">//About_Me</h2>
         <div class="about-content">
-            <div>
-                <p>
-                    I am a passionate security researcher specializing in Web Penetration Testing. My work involves
-                    identifying vulnerabilities, developing security tools, and ensuring system integrity against cyber
-                    threats.
-                </p>
-                <br>
-                <p>
-                    I hold a BCA from Bangalore North University (2020–2023). My approach combines manual testing
-                    methodologies with automated tools to uncover critical security flaws.
-                </p>
+            <div class="about-text">
+                <div class="terminal-box">
+                    <div class="terminal-header">
+                        <span class="terminal-btn red"></span>
+                        <span class="terminal-btn yellow"></span>
+                        <span class="terminal-btn green"></span>
+                        <span class="terminal-title">alen@kali:~/about</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">cat profile.txt</div>
+                        <p class="terminal-output">
+                            I am a passionate security researcher specializing in <strong>Web Penetration
+                                Testing</strong>.
+                            My work involves identifying vulnerabilities, developing security tools, and ensuring
+                            system integrity against cyber threats.
+                        </p>
+                        <br>
+                        <div class="terminal-line">cat education.txt</div>
+                        <p class="terminal-output">
+                            BCA from Bangalore North University (2020–2023). My approach combines manual testing
+                            methodologies with automated tools to uncover critical security flaws.
+                        </p>
+                    </div>
+                </div>
             </div>
             <div>
-                <h3>Technical Arsenal</h3>
-                <br>
+                <h3 class="neon-text" style="margin-bottom: 1rem;">[ Technical Arsenal ]</h3>
                 <div class="skills-grid">
                     <span class="skill-tag">Burp Suite</span>
                     <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Kali Linux</span>
                     <span class="skill-tag">Nmap</span>
                     <span class="skill-tag">Metasploit</span>
-                    <span class="skill-tag">Bash Scripting</span>
-                    <span class="skill-tag">HTML/CSS/JS</span>
+                    <span class="skill-tag">Bash</span>
+                    <span class="skill-tag">SQL Injection</span>
+                    <span class="skill-tag">XSS</span>
+                    <span class="skill-tag">OWASP Top 10</span>
+                    <span class="skill-tag">API Testing</span>
+                    <span class="skill-tag">Wireshark</span>
+                    <span class="skill-tag">Git</span>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="projects">
-        <h2 class="section-title">02. Selected Projects</h2>
+        <h2 class="section-title" data-num="02.">//Selected_Projects</h2>
         <div class="projects-grid">
 
             <div class="project-card">
+                <div class="project-icon"><i class="fas fa-bug"></i></div>
                 <h3>Burp Suite Logger Extension</h3>
                 <p>
-                    A custom extension developed for Burp Suite to enhance logging capabilities during penetration
-                    testing engagements. Improves data analysis and reporting efficiency.
+                    A custom extension developed for Burp Suite to enhance logging capabilities during
+                    penetration testing engagements. Improves data analysis and reporting efficiency.
                 </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Burp API</span>
+                    <span>Security</span>
+                </div>
                 <div class="project-links">
-                    <a href="https://github.com/AlenSarangSatheesh/" target="_blank"><i class="fab fa-github"></i> View
-                        Code</a>
+                    <a href="https://github.com/AlenSarangSatheesh/" target="_blank">
+                        <i class="fab fa-github"></i> Source
+                    </a>
                 </div>
             </div>
 
             <div class="project-card">
+                <div class="project-icon"><i class="fas fa-robot"></i></div>
                 <h3>Auto WhatsApp Sender</h3>
                 <p>
-                    An automated tool designed to simulate human-like interaction for WhatsApp messaging. developed
-                    using Python, focusing on behavior simulation and automation logic.
+                    An automated tool designed to simulate human-like interaction for WhatsApp messaging.
+                    Developed using Python, focusing on behavior simulation and automation logic.
                 </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Selenium</span>
+                    <span>Automation</span>
+                </div>
                 <div class="project-links">
-                    <a href="https://github.com/AlenSarangSatheesh/" target="_blank"><i class="fab fa-github"></i> View
-                        Code</a>
+                    <a href="https://github.com/AlenSarangSatheesh/" target="_blank">
+                        <i class="fab fa-github"></i> Source
+                    </a>
                 </div>
             </div>
 
             <div class="project-card">
+                <div class="project-icon"><i class="fas fa-chart-line"></i></div>
                 <h3>Swing Trading Platform</h3>
                 <p>
-                    A competition platform built for swing traders. Features user management, real-time data tracking,
-                    and leaderboard functionality.
+                    A competition platform built for swing traders. Features user management, real-time
+                    data tracking, and leaderboard functionality.
                 </p>
+                <div class="project-tech">
+                    <span>JavaScript</span>
+                    <span>APIs</span>
+                    <span>Analytics</span>
+                </div>
                 <div class="project-links">
-                    <a href="https://github.com/AlenSarangSatheesh/" target="_blank"><i class="fab fa-github"></i> View
-                        Code</a>
+                    <a href="https://github.com/AlenSarangSatheesh/" target="_blank">
+                        <i class="fab fa-github"></i> Source
+                    </a>
                 </div>
             </div>
 
@@ -309,23 +972,110 @@
     </section>
 
     <section id="contact" class="contact">
-        <h2 class="section-title">03. Get In Touch</h2>
-        <p>Currently open for opportunities in Application Security and Penetration Testing.</p>
+        <div class="contact-content">
+            <h2 class="section-title" data-num="03.">//Get_In_Touch</h2>
+            <p>
+                Currently open for opportunities in <span class="neon-text-cyan">Application Security</span>
+                and <span class="neon-text-cyan">Penetration Testing</span>. Let's collaborate and make
+                systems more secure.
+            </p>
 
-        <div style="margin-top: 2rem;">
-            <a href="mailto:alensarangsatheesh@gmail.com" class="btn">Say Hello</a>
+            <a href="mailto:alensarangsatheesh@gmail.com" class="btn">Send_Message()</a>
+
+            <div class="social-links">
+                <a href="https://github.com/AlenSarangSatheesh/" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/alen-sarang-satheesh" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:alensarangsatheesh@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+
+            <footer>
+                <p>
+                    <span>&lt;/&gt;</span> with <span>security</span> in mind | &copy; 2026 Alen Sarang Satheesh
+                </p>
+            </footer>
         </div>
-
-        <div class="social-links">
-            <a href="https://github.com/AlenSarangSatheesh/" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/alen-sarang-satheesh" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:alensarangsatheesh@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
-
-        <footer style="margin-top: 5rem; font-size: 0.8rem; color: #666;">
-            <p>&copy; 2026 Alen Sarang Satheesh. Built for Security.</p>
-        </footer>
     </section>
+
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/~`アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const charArray = chars.split('');
+
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * canvas.height / fontSize;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px Fira Code';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover sound effect simulation (visual feedback)
+        document.querySelectorAll('.btn, .skill-tag, .project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                el.style.transition = 'all 0.1s ease';
+            });
+        });
+
+        // Console Easter Egg
+        console.log('%c⚠️ WARNING: This is a browser feature intended for developers.',
+            'color: #ff0055; font-size: 16px; font-weight: bold;');
+        console.log('%cIf someone told you to paste something here, it\'s likely a scam.',
+            'color: #00ff41; font-size: 14px;');
+        console.log('%c👋 Hey there, fellow hacker! Nice to see you poking around.',
+            'color: #00d4ff; font-size: 14px;');
+    </script>
 
 </body>
 
