@@ -1,0 +1,334 @@
+/* ===================================
+   Media Queries - Responsive Design
+   =================================== */
+
+/* Tablet & Small Laptop */
+@media screen and (max-width: 1024px) {
+  :root {
+    --section-padding: 80px 5%;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card.featured {
+    grid-column: span 1;
+    grid-template-columns: 1fr;
+  }
+
+  .project-card.featured .project-image {
+    min-height: 200px;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Mobile Landscape */
+@media screen and (max-width: 768px) {
+  #desktop-nav {
+    display: none;
+  }
+
+  #hamburger-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+  }
+
+  .hero-info h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  .terminal-body {
+    padding: 16px;
+    font-size: 0.85rem;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-category {
+    padding: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .contact-info h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile Portrait */
+@media screen and (max-width: 480px) {
+  :root {
+    --section-padding: 60px 4%;
+  }
+
+  #hero {
+    padding: 100px 4% 40px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .hero-info h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    flex-direction: column;
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .terminal-header {
+    padding: 10px 12px;
+  }
+
+  .terminal-title {
+    display: none;
+  }
+
+  .terminal-body {
+    padding: 12px;
+    font-size: 0.8rem;
+  }
+
+  .prompt {
+    font-size: 0.75rem;
+  }
+
+  .social-links {
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    width: 44px;
+    height: 44px;
+  }
+
+  .social-link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .image-frame {
+    width: 220px;
+    height: 220px;
+  }
+
+  .project-content {
+    padding: 1.25rem;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+  }
+
+  .tech-tag {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .contact-method {
+    padding: 0.875rem 1rem;
+  }
+
+  .contact-terminal .terminal-body p {
+    font-size: 0.8rem;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+
+  footer {
+    padding: 2rem 4%;
+  }
+
+  .footer-quote {
+    font-size: 0.85rem;
+  }
+}
+
+/* Extra Small Devices */
+@media screen and (max-width: 360px) {
+  .hero-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  .category-title {
+    font-size: 1rem;
+  }
+
+  .skill-name {
+    font-size: 0.8rem;
+  }
+
+  .skill-level {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+}
+
+/* Hover Disabled for Touch Devices */
+@media (hover: none) {
+  .nav-link:hover::after {
+    width: 0;
+  }
+
+  .project-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none;
+  }
+
+  .social-link:hover {
+    transform: none;
+  }
+
+  .contact-method:hover {
+    transform: none;
+  }
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --text-primary: #ffffff;
+    --border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-primary {
+    background: var(--accent-green);
+  }
+
+  .skill-item,
+  .stat-card,
+  .project-card,
+  .contact-method {
+    border-width: 2px;
+  }
+}
+
+/* Print Styles */
+@media print {
+
+  .matrix-bg,
+  .scroll-indicator,
+  nav,
+  .hero-buttons,
+  .social-links,
+  .project-links,
+  .contact-terminal,
+  footer {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .section-title,
+  .hero-info h1 {
+    background: none;
+    -webkit-text-fill-color: black;
+    color: black;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
+}
