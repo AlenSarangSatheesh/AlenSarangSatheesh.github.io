@@ -10,36 +10,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
-            --bg-color: #fdfbf7;
-            --text-color: #2c2a25;
-            --accent-color: #8b7355; 
-            --accent-hover: #614f38;
+            --bg-color: #f8f5ee;
+            --text-color: #1e1c18;
+            --accent-color: #7a5c35;
+            --accent-hover: #4e3620;
+            --accent-light: #c4a882;
             --card-bg: #ffffff;
-            --card-bg-alt: #f5f2e9;
-            --border-color: #d1c9b8;
-            --divider: #e4decb;
+            --card-bg-alt: #ede8db;
+            --border-color: #bfb49e;
+            --divider: #d4ccb7;
+            --shadow: rgba(30, 20, 10, 0.08);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Lora', serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.8;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-            background-attachment: fixed;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4, .logo {
@@ -53,20 +48,20 @@
             transition: color 0.3s ease;
         }
 
-        a:hover {
-            color: var(--accent-hover);
-        }
+        a:hover { color: var(--accent-hover); }
 
+        /* ── Header ── */
         header {
-            padding: 2rem 5%;
+            padding: 1.6rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--divider);
-            background-color: rgba(253, 251, 247, 0.95);
+            background-color: rgba(248, 245, 238, 0.97);
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(8px);
         }
 
         .logo {
@@ -93,14 +88,141 @@
             letter-spacing: 1px;
             color: var(--text-color);
             padding-bottom: 2px;
-            border-bottom: 1px solid transparent;
+            border-bottom: 1.5px solid transparent;
+            transition: all 0.3s ease;
         }
 
         nav ul li a:hover {
-            border-bottom: 1px solid var(--accent-color);
+            border-bottom-color: var(--accent-color);
             color: var(--accent-color);
         }
 
+        /* ── Hamburger ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1100;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: all 0.35s ease;
+            transform-origin: center;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── Mobile Drawer ── */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(320px, 85vw);
+            height: 100vh;
+            background-color: var(--card-bg-alt);
+            border-left: 1px solid var(--border-color);
+            z-index: 1050;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 6rem 2.5rem 3rem;
+            gap: 2rem;
+            box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+        }
+
+        .mobile-drawer.open { right: 0; }
+
+        .mobile-drawer a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--divider);
+            padding-bottom: 1rem;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .mobile-drawer a:hover {
+            color: var(--accent-color);
+            padding-left: 0.5rem;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(30, 20, 10, 0.4);
+            z-index: 1040;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+        /* ── Page Hero ── */
+        .page-hero {
+            position: relative;
+            text-align: center;
+            padding: 6rem 10% 5rem;
+            background-color: var(--card-bg-alt);
+            border-bottom: 1px solid var(--divider);
+            overflow: hidden;
+        }
+
+        .page-hero-bg::before,
+        .page-hero-bg::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+        }
+
+        .page-hero-bg::before {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #c4a882, transparent);
+            top: -120px; left: -100px;
+        }
+
+        .page-hero-bg::after {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, #a08060, transparent);
+            bottom: -80px; right: -60px;
+        }
+
+        .page-hero-content { position: relative; z-index: 2; }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero-ornament {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--accent-light);
+            margin-bottom: 1.2rem;
+            letter-spacing: 8px;
+        }
+
+        .page-hero p {
+            font-family: 'Courier Prime', monospace;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        /* ── Sections ── */
         section {
             padding: 4rem 10%;
             position: relative;
@@ -114,11 +236,11 @@
             transform: translateX(-50%);
             width: 80%;
             height: 1px;
-            background-color: var(--divider);
+            background: linear-gradient(to right, transparent, var(--divider), transparent);
         }
 
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
             color: var(--text-color);
         }
@@ -126,25 +248,25 @@
         .section-subtitle {
             font-family: 'Courier Prime', monospace;
             color: var(--accent-color);
-            margin-bottom: 3rem;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            margin-bottom: 2.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
         }
 
-        /* Grid Layouts */
+        /* ── Grid ── */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
         }
 
-        /* Cards */
+        /* ── Cards ── */
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -153,36 +275,39 @@
         .card::before {
             content: '';
             position: absolute;
-            top: 4px;
-            left: 4px;
-            right: 4px;
-            bottom: 4px;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
             border: 1px solid var(--border-color);
             pointer-events: none;
             opacity: 0.3;
+            transition: opacity 0.35s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 14px 36px var(--shadow);
             border-color: var(--accent-color);
         }
 
+        .card:hover::before { opacity: 0.6; }
+
         .card-icon {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent-color);
             margin-bottom: 1rem;
+            transition: transform 0.3s ease;
         }
 
+        .card:hover .card-icon { transform: scale(1.1); }
+
         .card h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
             line-height: 1.3;
         }
 
         .card p {
-            color: #666;
-            font-size: 0.95rem;
+            color: #6b6050;
+            font-size: 0.9rem;
             margin-bottom: 1.5rem;
             flex-grow: 1;
         }
@@ -194,313 +319,270 @@
             padding-top: 1rem;
             border-top: 1px solid var(--divider);
         }
-        
+
         .card-links a {
             border-bottom: 1px dashed var(--accent-color);
         }
 
+        /* ── Footer ── */
         footer {
-            margin-top: 2rem;
             padding: 2rem;
             text-align: center;
             font-family: 'Courier Prime', monospace;
             font-size: 0.8rem;
-            color: #888;
+            color: #999;
             letter-spacing: 1px;
             background-color: var(--card-bg-alt);
+            border-top: 1px solid var(--divider);
         }
 
+        /* ── Scroll Animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Responsive ── */
         @media (max-width: 768px) {
             nav ul { display: none; }
+            .hamburger { display: flex; }
+            section { padding: 3rem 6%; }
+            .page-hero h1 { font-size: 2.5rem; }
+            .grid-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
+        <a href="index.html" class="drawer-link">Home</a>
+        <a href="index.html#services" class="drawer-link">Services</a>
+        <a href="index.html#contact" class="drawer-link">Contact</a>
+    </nav>
+
     <header>
         <div class="logo">A.S. <span>Satheesh</span></div>
-        <nav>
+        <nav aria-label="Desktop navigation">
             <ul>
                 <li><a href="index.html">Back to Home</a></li>
             </ul>
         </nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </header>
 
-    <section style="background-color: var(--card-bg-alt); text-align: center; padding: 6rem 10% 4rem;">
-        <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Project Archive</h1>
-        <p style="font-family: 'Courier Prime', monospace; color: var(--accent-color); letter-spacing: 2px; text-transform: uppercase;">
-            A complete collection of my open-source work.
-        </p>
+    <div class="page-hero">
+        <div class="page-hero-bg"></div>
+        <div class="page-hero-content">
+            <div class="page-hero-ornament">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+            <h1>Project Archive</h1>
+            <p>A complete collection of my open-source work.</p>
+        </div>
+    </div>
+
+    <!-- Security Assessments -->
+    <section>
+        <h2 class="section-title fade-up">Security Assessments</h2>
+        <p class="section-subtitle fade-up">00. Bug Bounty &amp; Pentesting Targets</p>
+
+        <div class="grid-container">
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>0x</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>123form</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>A1</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Achmea</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Arizonatools</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Ecojoko</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Homerepair</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Kerala Book Store</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Kinde</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Medibuddy</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>PMEGP</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>PharmEasy</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>SuperCook</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Tata Motor</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Vercel</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Zulip</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>aapkapainter</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>biotikon</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>chainabuse</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>commonsware</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>dev.seekats.com</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>dovendi</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>freesewing</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>superca</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>tailornova</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>workout.cool</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+        </div>
     </section>
 
-        <!-- Penetration Testing & Bug Bounty -->
-    <section>
-        <h2 class="section-title">Security Assessments</h2>
-        <p class="section-subtitle">00. Bug Bounty & Pentesting Targets</p>
-        
-        <div class="grid-container">            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>0x</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>123form</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>A1</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Achmea</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Arizonatools</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Ecojoko</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Homerepair</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Kerala Book Store</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Kinde</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Medibuddy</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>PMEGP</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>PharmEasy</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>SuperCook</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Tata Motor</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Vercel</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Zulip</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>aapkapainter</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>biotikon</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>chainabuse</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>commonsware</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>dev.seekats.com</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>dovendi</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>freesewing</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>superca</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>tailornova</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>            <div class="card">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>workout.cool</h3>
-                <p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p>
-            </div>        </div>
-    </section>
     <!-- Security & Automation -->
     <section>
-        <h2 class="section-title">Security & Automation</h2>
-        <p class="section-subtitle">01. Scripts and Tools</p>
-        
+        <h2 class="section-title fade-up">Security &amp; Automation</h2>
+        <p class="section-subtitle fade-up">01. Scripts and Tools</p>
+
         <div class="grid-container">
-            <div class="card">
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
                 <h3>Burp-Enhanced-Logger</h3>
                 <p>Enhanced logging capabilities for Burp Suite designed to streamline penetration testing workflows and data analysis.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-robot"></i></div>
                 <h3>whatsapp-bulk-sender</h3>
                 <p>An automated bulk messaging utility for WhatsApp, simulating human-like interaction for efficiency.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-file-image"></i></div>
                 <h3>Screenshot_Phone-Number_Extractor</h3>
                 <p>An OCR-based tool designed for quickly extracting phone numbers directly from image screenshots.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-spider"></i></div>
                 <h3>Groww-MTF-stocks-list-Scrapper</h3>
                 <p>A web scraper tailored for extracting up-to-date margin trading stock lists from the Groww platform.</p>
-                </div>
+            </div>
         </div>
     </section>
 
     <!-- Web Applications -->
     <section>
-        <h2 class="section-title">Web Applications</h2>
-        <p class="section-subtitle">02. Full-Stack Development</p>
-        
+        <h2 class="section-title fade-up">Web Applications</h2>
+        <p class="section-subtitle fade-up">02. Full-Stack Development</p>
+
         <div class="grid-container">
-            <div class="card">
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-campground"></i></div>
                 <h3>Tent-Camp-Website</h3>
                 <p>A full-stack, responsive web application engineered for browsing and reserving tent camping experiences.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-building"></i></div>
                 <h3>Vaikuntam-builders</h3>
                 <p>A dynamic business portfolio website developed for Vaikuntam Builders to showcase their properties.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-globe"></i></div>
                 <h3>AlenSarangSatheesh.github.io</h3>
                 <p>The source code for this very freelance portfolio website, featuring a classic, vintage design aesthetic.</p>
-                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Trading & Browser Extensions -->
+    <!-- Trading & Extensions -->
     <section>
-        <h2 class="section-title">Trading & Extensions</h2>
-        <p class="section-subtitle">03. Workflow Enhancement</p>
-        
+        <h2 class="section-title fade-up">Trading &amp; Extensions</h2>
+        <p class="section-subtitle fade-up">03. Workflow Enhancement</p>
+
         <div class="grid-container">
-            <div class="card">
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-chart-line"></i></div>
                 <h3>TradingView-Unlimited-Watchlists-and-Price-Alerts</h3>
                 <p>A bespoke browser extension designed to bypass watchlist limitations and manage advanced price alerts.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
                 <h3>TradingView-to-Screener-ChartInk-and-back</h3>
                 <p>A seamless workflow tool enabling quick-switching between TradingView charts and ChartInk screeners.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-camera"></i></div>
                 <h3>Tradingview-Screenshot-Extension</h3>
                 <p>A lightweight utility designed specifically for capturing and organizing TradingView chart screenshots.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-briefcase"></i></div>
                 <h3>Naukri-LinkedIn-Extention</h3>
                 <p>A browser extension developed for streamlining job applications and profile syncing across Naukri and LinkedIn.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-images"></i></div>
                 <h3>Screenshot-Album-for-Chart-Pattern-Analysis</h3>
                 <p>An organizational utility for sorting chart patterns, helping traders easily backtest strategies.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-trophy"></i></div>
                 <h3>stock-challenge</h3>
                 <p>A weekly stock market challenge and tracking application to gamify and learn trading concepts.</p>
-                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Data Science & Machine Learning -->
+    <!-- Data Science & ML -->
     <section>
-        <h2 class="section-title">Data Science & ML</h2>
-        <p class="section-subtitle">04. Analytics and Modeling</p>
-        
+        <h2 class="section-title fade-up">Data Science &amp; ML</h2>
+        <p class="section-subtitle fade-up">04. Analytics and Modeling</p>
+
         <div class="grid-container">
-            <div class="card">
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-car-battery"></i></div>
                 <h3>Electric-Vehicle-Population-Analysis</h3>
                 <p>Data analysis of EV populations in the US to aid quantitative investment strategies for TESLA.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
                 <h3>Nifty-50-Stock-Analysis</h3>
                 <p>Pattern recognition tool finding correlations in price movements of Nifty 50 stocks.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-music"></i></div>
                 <h3>Music-Genre-prediction---Machine-learning</h3>
                 <p>A sophisticated machine learning model developed for classifying and predicting musical genres from audio data.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-laptop-medical"></i></div>
                 <h3>KPMG-virtual-data-analyst</h3>
                 <p>Comprehensive data analytics tasks completed during the KPMG virtual data analyst internship program.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-chart-bar"></i></div>
                 <h3>Sales-Data-Analytics</h3>
                 <p>An exploratory data analysis project focused on deriving actionable business insights from sales datasets.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
                 <h3>Data-Science-project-for-college</h3>
                 <p>An academic data science and research project involving data cleaning, visualization, and basic modeling.</p>
-                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Utilities & Miscellaneous -->
+    <!-- Utilities & Misc -->
     <section>
-        <h2 class="section-title">Utilities & Misc</h2>
-        <p class="section-subtitle">05. Helpful Scripts</p>
-        
+        <h2 class="section-title fade-up">Utilities &amp; Misc</h2>
+        <p class="section-subtitle fade-up">05. Helpful Scripts</p>
+
         <div class="grid-container">
-            <div class="card">
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-file-pdf"></i></div>
                 <h3>epub_to_pdf_Converter</h3>
-                <p>A Python script utilizing ebooklib & reportlab that rapidly transforms EPUB files into PDFs.</p>
-                </div>
-            <div class="card">
+                <p>A Python script utilizing ebooklib &amp; reportlab that rapidly transforms EPUB files into PDFs.</p>
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-database"></i></div>
                 <h3>Table-to-sql-database-Convereter-.sql-</h3>
                 <p>A backend database utility script to convert standard table data into a clean SQL format.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-book-open"></i></div>
                 <h3>PSC-practice</h3>
                 <p>A collection of resources, scripts, and preparation materials for Kerala PSC examinations.</p>
-                </div>
-            <div class="card">
+            </div>
+            <div class="card fade-up">
                 <div class="card-icon"><i class="fas fa-folder-open"></i></div>
                 <h3>April-21-1998</h3>
                 <p>A personal repository utilized for archival, scripting practice, and miscellaneous code storage.</p>
-                </div>
+            </div>
         </div>
     </section>
 
@@ -508,6 +590,46 @@
         <p>&copy; 2026 Alen Sarang Satheesh. Crafted with security and elegance in mind.</p>
     </footer>
 
+    <script>
+        // ── Hamburger / Drawer ──
+        const hamburger = document.getElementById('hamburger');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+
+        function openDrawer() {
+            mobileDrawer.classList.add('open');
+            drawerOverlay.classList.add('open');
+            hamburger.classList.add('open');
+            hamburger.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            mobileDrawer.classList.remove('open');
+            drawerOverlay.classList.remove('open');
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', () => {
+            mobileDrawer.classList.contains('open') ? closeDrawer() : openDrawer();
+        });
+
+        drawerOverlay.addEventListener('click', closeDrawer);
+        document.querySelectorAll('.drawer-link').forEach(link => link.addEventListener('click', closeDrawer));
+
+        // ── Scroll Animations ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+
 </body>
 </html>
-
