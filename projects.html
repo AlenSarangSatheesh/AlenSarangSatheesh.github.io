@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alen Sarang Satheesh | Project Archive</title>
     <meta name="description"
-        content="Complete archive of projects, software, extensions, and data science research by Alen Sarang Satheesh.">
+        content="Complete archive of security assessments, software, browser extensions, and data science projects by Alen Sarang Satheesh.">
+    <meta name="theme-color" content="#0a0e14">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #f8f5ee;
-            --text-color: #1e1c18;
-            --accent-color: #7a5c35;
-            --accent-hover: #4e3620;
-            --accent-light: #c4a882;
-            --card-bg: #ffffff;
-            --card-bg-alt: #ede8db;
-            --border-color: #bfb49e;
-            --divider: #d4ccb7;
-            --shadow: rgba(30, 20, 10, 0.08);
+            --bg: #0a0e14;
+            --bg-elev: #11161f;
+            --bg-elev-2: #161d28;
+            --text: #e6edf3;
+            --text-dim: #8b96a5;
+            --text-faint: #5b6675;
+            --accent: #00e5a0;
+            --accent-2: #38bdf8;
+            --accent-dim: rgba(0, 229, 160, 0.12);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.16);
+            --glow: rgba(0, 229, 160, 0.25);
+            --shadow: rgba(0, 0, 0, 0.5);
+            --font-sans: 'Inter', system-ui, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,72 +40,107 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Lora', serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.8;
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, h4, .logo {
-            font-family: 'Playfair Display', serif;
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 30%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 30%, transparent 75%);
+            opacity: 0.5;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 500px;
+            z-index: -1;
+            background: radial-gradient(circle, var(--glow), transparent 60%);
+            filter: blur(40px);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
             font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
         a {
             text-decoration: none;
-            color: var(--accent-color);
-            transition: color 0.3s ease;
+            color: var(--accent);
+            transition: color 0.25s ease;
         }
 
-        a:hover { color: var(--accent-hover); }
+        a:hover { color: var(--accent-2); }
+
+        ::selection { background: var(--accent); color: var(--bg); }
 
         /* ── Header ── */
         header {
-            padding: 1.6rem 5%;
+            padding: 1.1rem 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--divider);
-            background-color: rgba(248, 245, 238, 0.97);
+            border-bottom: 1px solid var(--border);
+            background-color: rgba(10, 14, 20, 0.7);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .logo {
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            color: var(--text-color);
-        }
-
-        .logo span {
-            font-style: italic;
-            color: var(--accent-color);
-        }
-
-        nav ul {
+            font-family: var(--font-mono);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
             display: flex;
-            list-style: none;
-            gap: 2rem;
+            align-items: center;
+            gap: 0.55rem;
         }
+
+        .logo .prompt { color: var(--accent); }
+
+        .logo .cursor {
+            width: 9px;
+            height: 1.05rem;
+            background: var(--accent);
+            display: inline-block;
+            animation: blink 1.1s steps(1) infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
 
         nav ul li a {
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-color);
-            padding-bottom: 2px;
-            border-bottom: 1.5px solid transparent;
-            transition: all 0.3s ease;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            transition: color 0.25s ease;
         }
 
-        nav ul li a:hover {
-            border-bottom-color: var(--accent-color);
-            color: var(--accent-color);
-        }
+        nav ul li a::before { content: '# '; color: var(--text-faint); }
+        nav ul li a:hover { color: var(--accent); }
 
         /* ── Hamburger ── */
         .hamburger {
@@ -113,7 +158,7 @@
             display: block;
             width: 26px;
             height: 2px;
-            background-color: var(--text-color);
+            background-color: var(--text);
             transition: all 0.35s ease;
             transform-origin: center;
         }
@@ -129,37 +174,34 @@
             right: -100%;
             width: min(320px, 85vw);
             height: 100vh;
-            background-color: var(--card-bg-alt);
-            border-left: 1px solid var(--border-color);
+            background-color: var(--bg-elev);
+            border-left: 1px solid var(--border);
             z-index: 1050;
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             padding: 6rem 2.5rem 3rem;
-            gap: 2rem;
-            box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+            gap: 1.6rem;
+            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
         }
 
         .mobile-drawer.open { right: 0; }
 
         .mobile-drawer a {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            color: var(--text-color);
-            border-bottom: 1px solid var(--divider);
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
             padding-bottom: 1rem;
-            transition: color 0.3s ease, padding-left 0.3s ease;
+            transition: color 0.25s ease, padding-left 0.25s ease;
         }
 
-        .mobile-drawer a:hover {
-            color: var(--accent-color);
-            padding-left: 0.5rem;
-        }
+        .mobile-drawer a:hover { color: var(--accent); padding-left: 0.5rem; }
 
         .drawer-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(30, 20, 10, 0.4);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1040;
             opacity: 0;
             pointer-events: none;
@@ -170,424 +212,379 @@
 
         /* ── Page Hero ── */
         .page-hero {
-            position: relative;
             text-align: center;
-            padding: 6rem 10% 5rem;
-            background-color: var(--card-bg-alt);
-            border-bottom: 1px solid var(--divider);
-            overflow: hidden;
+            padding: 4.5rem 6% 3rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .page-hero-bg::before,
-        .page-hero-bg::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-        }
-
-        .page-hero-bg::before {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, #c4a882, transparent);
-            top: -120px; left: -100px;
-        }
-
-        .page-hero-bg::after {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, #a08060, transparent);
-            bottom: -80px; right: -60px;
-        }
-
-        .page-hero-content { position: relative; z-index: 2; }
-
-        .page-hero h1 {
-            font-size: 3.5rem;
+        .page-hero .kicker {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
             margin-bottom: 1rem;
         }
 
-        .page-hero-ornament {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--accent-light);
-            margin-bottom: 1.2rem;
-            letter-spacing: 8px;
+        .page-hero h1 {
+            font-size: clamp(2.2rem, 6vw, 3.4rem);
+            margin-bottom: 1rem;
+        }
+
+        .page-hero h1 .accent {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .page-hero p {
-            font-family: 'Courier Prime', monospace;
-            color: var(--accent-color);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
+            color: var(--text-dim);
+            max-width: 560px;
+            margin: 0 auto;
         }
+
+        /* ── Filter bar ── */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+            max-width: 1200px;
+            margin: 0 auto 1rem;
+            padding: 0 6%;
+            position: sticky;
+            top: 72px;
+            z-index: 900;
+        }
+
+        .filter-btn {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover { color: var(--text); border-color: var(--border-strong); }
+
+        .filter-btn.active {
+            color: var(--bg);
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .filter-btn .count { opacity: 0.6; }
 
         /* ── Sections ── */
         section {
-            padding: 4rem 10%;
-            position: relative;
+            padding: 3rem 6%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        section:not(:last-of-type)::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--divider), transparent);
+        section.hidden { display: none; }
+
+        .section-head { margin-bottom: 2rem; display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }
+
+        .section-index {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 0.9rem;
         }
 
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
+        .section-title { font-size: clamp(1.4rem, 3vw, 1.9rem); }
 
-        .section-subtitle {
-            font-family: 'Courier Prime', monospace;
-            color: var(--accent-color);
-            margin-bottom: 2.5rem;
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
+        .section-sub {
+            font-family: var(--font-mono);
+            color: var(--text-faint);
+            font-size: 0.8rem;
+            width: 100%;
         }
 
         /* ── Grid ── */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1.2rem;
         }
 
         /* ── Cards ── */
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             position: relative;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .card::before {
             content: '';
             position: absolute;
-            top: 4px; left: 4px; right: 4px; bottom: 4px;
-            border: 1px solid var(--border-color);
-            pointer-events: none;
-            opacity: 0.3;
-            transition: opacity 0.35s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 14px 36px var(--shadow);
-            border-color: var(--accent-color);
-        }
-
-        .card:hover::before { opacity: 0.6; }
-
-        .card-icon {
-            font-size: 1.8rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
+            top: 0; left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(var(--accent), var(--accent-2));
+            transform: scaleY(0);
+            transform-origin: top;
             transition: transform 0.3s ease;
         }
 
-        .card:hover .card-icon { transform: scale(1.1); }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px var(--shadow);
+            border-color: var(--border-strong);
+        }
+
+        .card:hover::before { transform: scaleY(1); }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .card-badge {
+            font-family: var(--font-mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 0.2rem 0.6rem;
+        }
 
         .card h3 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-bottom: 0.5rem;
-            line-height: 1.3;
+            line-height: 1.35;
+            word-break: break-word;
+            font-family: var(--font-mono);
+            font-weight: 500;
         }
 
         .card p {
-            color: #6b6050;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+            color: var(--text-dim);
+            font-size: 0.88rem;
             flex-grow: 1;
-        }
-
-        .card-links {
-            margin-top: auto;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.85rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--divider);
-        }
-
-        .card-links a {
-            border-bottom: 1px dashed var(--accent-color);
         }
 
         /* ── Footer ── */
         footer {
-            padding: 2rem;
             text-align: center;
-            font-family: 'Courier Prime', monospace;
-            font-size: 0.8rem;
-            color: #999;
-            letter-spacing: 1px;
-            background-color: var(--card-bg-alt);
-            border-top: 1px solid var(--divider);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-faint);
+            padding: 2.5rem 6%;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
         }
+
+        footer .prompt { color: var(--accent); }
 
         /* ── Scroll Animations ── */
         .fade-up {
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+            .fade-up { opacity: 1; transform: none; }
         }
 
         /* ── Responsive ── */
         @media (max-width: 768px) {
             nav ul { display: none; }
             .hamburger { display: flex; }
-            section { padding: 3rem 6%; }
-            .page-hero h1 { font-size: 2.5rem; }
+            .filter-bar { top: 66px; }
+            section { padding: 2.5rem 6%; }
             .grid-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
+
 <body>
 
     <div class="drawer-overlay" id="drawerOverlay"></div>
-
     <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
-        <a href="index.html" class="drawer-link">Home</a>
-        <a href="index.html#services" class="drawer-link">Services</a>
-        <a href="index.html#contact" class="drawer-link">Contact</a>
+        <a href="index.html" class="drawer-link">home</a>
+        <a href="index.html#services" class="drawer-link">services</a>
+        <a href="index.html#contact" class="drawer-link">contact</a>
     </nav>
 
     <header>
-        <div class="logo">A.S. <span>Satheesh</span></div>
+        <a href="index.html" class="logo"><span class="prompt">~/</span>satheesh<span class="cursor"></span></a>
         <nav aria-label="Desktop navigation">
             <ul>
-                <li><a href="index.html">Back to Home</a></li>
+                <li><a href="index.html">home</a></li>
+                <li><a href="index.html#services">services</a></li>
+                <li><a href="index.html#contact">contact</a></li>
             </ul>
         </nav>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </button>
     </header>
 
     <div class="page-hero">
-        <div class="page-hero-bg"></div>
-        <div class="page-hero-content">
-            <div class="page-hero-ornament">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
-            <h1>Project Archive</h1>
-            <p>A complete collection of my open-source work.</p>
-        </div>
+        <p class="kicker">// ls -la ~/projects</p>
+        <h1>Project <span class="accent">Archive</span></h1>
+        <p>A complete collection of my open-source work &mdash; security assessments, tools, web apps, extensions, and data science.</p>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">all</button>
+        <button class="filter-btn" data-filter="security">security</button>
+        <button class="filter-btn" data-filter="automation">automation</button>
+        <button class="filter-btn" data-filter="web">web</button>
+        <button class="filter-btn" data-filter="trading">trading</button>
+        <button class="filter-btn" data-filter="data">data science</button>
+        <button class="filter-btn" data-filter="utils">utilities</button>
     </div>
 
     <!-- Security Assessments -->
-    <section>
-        <h2 class="section-title fade-up">Security Assessments</h2>
-        <p class="section-subtitle fade-up">00. Bug Bounty &amp; Pentesting Targets</p>
-
+    <section data-category="security">
+        <div class="section-head fade-up">
+            <span class="section-index">00</span>
+            <h2 class="section-title">Security Assessments</h2>
+            <span class="section-sub">// bug bounty &amp; pentesting targets</span>
+        </div>
         <div class="grid-container">
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>0x</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>123form</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>A1</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Achmea</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Arizonatools</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Ecojoko</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Homerepair</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Kerala Book Store</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Kinde</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Medibuddy</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>PMEGP</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>PharmEasy</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>SuperCook</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Tata Motor</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Vercel</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Zulip</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>aapkapainter</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>biotikon</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>chainabuse</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>commonsware</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>dev.seekats.com</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>dovendi</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>freesewing</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>superca</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>tailornova</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
-            <div class="card fade-up"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>workout.cool</h3><p>Conducted comprehensive security assessments and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>0x</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>123form</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>A1</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Achmea</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Arizonatools</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Ecojoko</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Homerepair</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Kerala Book Store</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Kinde</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Medibuddy</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>PMEGP</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>PharmEasy</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>SuperCook</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Tata Motor</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Vercel</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>Zulip</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>aapkapainter</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>biotikon</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>chainabuse</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>commonsware</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>dev.seekats.com</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>dovendi</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>freesewing</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>superca</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>tailornova</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">pentest</span></div><h3>workout.cool</h3><p>Comprehensive security assessment and penetration testing to identify vulnerabilities.</p></div>
         </div>
     </section>
 
     <!-- Security & Automation -->
-    <section>
-        <h2 class="section-title fade-up">Security &amp; Automation</h2>
-        <p class="section-subtitle fade-up">01. Scripts and Tools</p>
-
+    <section data-category="automation">
+        <div class="section-head fade-up">
+            <span class="section-index">01</span>
+            <h2 class="section-title">Security &amp; Automation</h2>
+            <span class="section-sub">// scripts and tools</span>
+        </div>
         <div class="grid-container">
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Burp-Enhanced-Logger</h3>
-                <p>Enhanced logging capabilities for Burp Suite designed to streamline penetration testing workflows and data analysis.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-robot"></i></div>
-                <h3>whatsapp-bulk-sender</h3>
-                <p>An automated bulk messaging utility for WhatsApp, simulating human-like interaction for efficiency.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-file-image"></i></div>
-                <h3>Screenshot_Phone-Number_Extractor</h3>
-                <p>An OCR-based tool designed for quickly extracting phone numbers directly from image screenshots.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-spider"></i></div>
-                <h3>Groww-MTF-stocks-list-Scrapper</h3>
-                <p>A web scraper tailored for extracting up-to-date margin trading stock lists from the Groww platform.</p>
-            </div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><span class="card-badge">tool</span></div><h3>Burp-Enhanced-Logger</h3><p>Enhanced logging for Burp Suite to streamline penetration testing workflows and data analysis.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-robot"></i></div><span class="card-badge">automation</span></div><h3>whatsapp-bulk-sender</h3><p>Automated bulk messaging utility for WhatsApp, simulating human-like interaction for efficiency.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-file-image"></i></div><span class="card-badge">ocr</span></div><h3>Screenshot_Phone-Number_Extractor</h3><p>OCR-based tool for quickly extracting phone numbers directly from image screenshots.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-spider"></i></div><span class="card-badge">scraper</span></div><h3>Groww-MTF-stocks-list-Scrapper</h3><p>Web scraper for extracting up-to-date margin trading stock lists from the Groww platform.</p></div>
         </div>
     </section>
 
     <!-- Web Applications -->
-    <section>
-        <h2 class="section-title fade-up">Web Applications</h2>
-        <p class="section-subtitle fade-up">02. Full-Stack Development</p>
-
+    <section data-category="web">
+        <div class="section-head fade-up">
+            <span class="section-index">02</span>
+            <h2 class="section-title">Web Applications</h2>
+            <span class="section-sub">// full-stack development</span>
+        </div>
         <div class="grid-container">
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-campground"></i></div>
-                <h3>Tent-Camp-Website</h3>
-                <p>A full-stack, responsive web application engineered for browsing and reserving tent camping experiences.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-building"></i></div>
-                <h3>Vaikuntam-builders</h3>
-                <p>A dynamic business portfolio website developed for Vaikuntam Builders to showcase their properties.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-globe"></i></div>
-                <h3>AlenSarangSatheesh.github.io</h3>
-                <p>The source code for this very freelance portfolio website, featuring a classic, vintage design aesthetic.</p>
-            </div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-campground"></i></div><span class="card-badge">full-stack</span></div><h3>Tent-Camp-Website</h3><p>A full-stack, responsive web app for browsing and reserving tent camping experiences.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-building"></i></div><span class="card-badge">portfolio</span></div><h3>Vaikuntam-builders</h3><p>A dynamic business portfolio website for Vaikuntam Builders to showcase their properties.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-globe"></i></div><span class="card-badge">site</span></div><h3>AlenSarangSatheesh.github.io</h3><p>The source code for this very freelance portfolio website.</p></div>
         </div>
     </section>
 
     <!-- Trading & Extensions -->
-    <section>
-        <h2 class="section-title fade-up">Trading &amp; Extensions</h2>
-        <p class="section-subtitle fade-up">03. Workflow Enhancement</p>
-
+    <section data-category="trading">
+        <div class="section-head fade-up">
+            <span class="section-index">03</span>
+            <h2 class="section-title">Trading &amp; Extensions</h2>
+            <span class="section-sub">// workflow enhancement</span>
+        </div>
         <div class="grid-container">
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>TradingView-Unlimited-Watchlists-and-Price-Alerts</h3>
-                <p>A bespoke browser extension designed to bypass watchlist limitations and manage advanced price alerts.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-exchange-alt"></i></div>
-                <h3>TradingView-to-Screener-ChartInk-and-back</h3>
-                <p>A seamless workflow tool enabling quick-switching between TradingView charts and ChartInk screeners.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-camera"></i></div>
-                <h3>Tradingview-Screenshot-Extension</h3>
-                <p>A lightweight utility designed specifically for capturing and organizing TradingView chart screenshots.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-briefcase"></i></div>
-                <h3>Naukri-LinkedIn-Extention</h3>
-                <p>A browser extension developed for streamlining job applications and profile syncing across Naukri and LinkedIn.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-images"></i></div>
-                <h3>Screenshot-Album-for-Chart-Pattern-Analysis</h3>
-                <p>An organizational utility for sorting chart patterns, helping traders easily backtest strategies.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-trophy"></i></div>
-                <h3>stock-challenge</h3>
-                <p>A weekly stock market challenge and tracking application to gamify and learn trading concepts.</p>
-            </div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-chart-line"></i></div><span class="card-badge">extension</span></div><h3>TradingView-Unlimited-Watchlists-and-Price-Alerts</h3><p>Browser extension to bypass watchlist limitations and manage advanced price alerts.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-exchange-alt"></i></div><span class="card-badge">extension</span></div><h3>TradingView-to-Screener-ChartInk-and-back</h3><p>Workflow tool enabling quick-switching between TradingView charts and ChartInk screeners.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-camera"></i></div><span class="card-badge">extension</span></div><h3>Tradingview-Screenshot-Extension</h3><p>Lightweight utility for capturing and organizing TradingView chart screenshots.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-briefcase"></i></div><span class="card-badge">extension</span></div><h3>Naukri-LinkedIn-Extention</h3><p>Browser extension for streamlining job applications and profile syncing across Naukri and LinkedIn.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-images"></i></div><span class="card-badge">tool</span></div><h3>Screenshot-Album-for-Chart-Pattern-Analysis</h3><p>Organizational utility for sorting chart patterns, helping traders easily backtest strategies.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-trophy"></i></div><span class="card-badge">app</span></div><h3>stock-challenge</h3><p>A weekly stock market challenge and tracking app to gamify and learn trading concepts.</p></div>
         </div>
     </section>
 
     <!-- Data Science & ML -->
-    <section>
-        <h2 class="section-title fade-up">Data Science &amp; ML</h2>
-        <p class="section-subtitle fade-up">04. Analytics and Modeling</p>
-
+    <section data-category="data">
+        <div class="section-head fade-up">
+            <span class="section-index">04</span>
+            <h2 class="section-title">Data Science &amp; ML</h2>
+            <span class="section-sub">// analytics and modeling</span>
+        </div>
         <div class="grid-container">
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-car-battery"></i></div>
-                <h3>Electric-Vehicle-Population-Analysis</h3>
-                <p>Data analysis of EV populations in the US to aid quantitative investment strategies for TESLA.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
-                <h3>Nifty-50-Stock-Analysis</h3>
-                <p>Pattern recognition tool finding correlations in price movements of Nifty 50 stocks.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-music"></i></div>
-                <h3>Music-Genre-prediction---Machine-learning</h3>
-                <p>A sophisticated machine learning model developed for classifying and predicting musical genres from audio data.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-laptop-medical"></i></div>
-                <h3>KPMG-virtual-data-analyst</h3>
-                <p>Comprehensive data analytics tasks completed during the KPMG virtual data analyst internship program.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-chart-bar"></i></div>
-                <h3>Sales-Data-Analytics</h3>
-                <p>An exploratory data analysis project focused on deriving actionable business insights from sales datasets.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                <h3>Data-Science-project-for-college</h3>
-                <p>An academic data science and research project involving data cleaning, visualization, and basic modeling.</p>
-            </div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-car-battery"></i></div><span class="card-badge">analysis</span></div><h3>Electric-Vehicle-Population-Analysis</h3><p>Data analysis of EV populations in the US to aid quantitative investment strategies for TESLA.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-chart-pie"></i></div><span class="card-badge">analysis</span></div><h3>Nifty-50-Stock-Analysis</h3><p>Pattern recognition tool finding correlations in price movements of Nifty 50 stocks.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-music"></i></div><span class="card-badge">ml</span></div><h3>Music-Genre-prediction---Machine-learning</h3><p>A machine learning model for classifying and predicting musical genres from audio data.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-laptop-medical"></i></div><span class="card-badge">internship</span></div><h3>KPMG-virtual-data-analyst</h3><p>Data analytics tasks completed during the KPMG virtual data analyst internship program.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-chart-bar"></i></div><span class="card-badge">eda</span></div><h3>Sales-Data-Analytics</h3><p>Exploratory data analysis focused on deriving actionable business insights from sales datasets.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-graduation-cap"></i></div><span class="card-badge">academic</span></div><h3>Data-Science-project-for-college</h3><p>An academic project involving data cleaning, visualization, and basic modeling.</p></div>
         </div>
     </section>
 
     <!-- Utilities & Misc -->
-    <section>
-        <h2 class="section-title fade-up">Utilities &amp; Misc</h2>
-        <p class="section-subtitle fade-up">05. Helpful Scripts</p>
-
+    <section data-category="utils">
+        <div class="section-head fade-up">
+            <span class="section-index">05</span>
+            <h2 class="section-title">Utilities &amp; Misc</h2>
+            <span class="section-sub">// helpful scripts</span>
+        </div>
         <div class="grid-container">
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-file-pdf"></i></div>
-                <h3>epub_to_pdf_Converter</h3>
-                <p>A Python script utilizing ebooklib &amp; reportlab that rapidly transforms EPUB files into PDFs.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-database"></i></div>
-                <h3>Table-to-sql-database-Convereter-.sql-</h3>
-                <p>A backend database utility script to convert standard table data into a clean SQL format.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-book-open"></i></div>
-                <h3>PSC-practice</h3>
-                <p>A collection of resources, scripts, and preparation materials for Kerala PSC examinations.</p>
-            </div>
-            <div class="card fade-up">
-                <div class="card-icon"><i class="fas fa-folder-open"></i></div>
-                <h3>April-21-1998</h3>
-                <p>A personal repository utilized for archival, scripting practice, and miscellaneous code storage.</p>
-            </div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-file-pdf"></i></div><span class="card-badge">script</span></div><h3>epub_to_pdf_Converter</h3><p>A Python script using ebooklib &amp; reportlab that rapidly transforms EPUB files into PDFs.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-database"></i></div><span class="card-badge">script</span></div><h3>Table-to-sql-database-Convereter-.sql-</h3><p>A backend database utility to convert standard table data into a clean SQL format.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-book-open"></i></div><span class="card-badge">resources</span></div><h3>PSC-practice</h3><p>A collection of resources, scripts, and preparation materials for Kerala PSC examinations.</p></div>
+            <div class="card fade-up"><div class="card-top"><div class="card-icon"><i class="fas fa-folder-open"></i></div><span class="card-badge">archive</span></div><h3>April-21-1998</h3><p>A personal repository for archival, scripting practice, and miscellaneous code storage.</p></div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Alen Sarang Satheesh. Crafted with security and elegance in mind.</p>
+        <p><span class="prompt">~/</span>satheesh &mdash; &copy; 2026 Alen Sarang Satheesh. Built &amp; secured.</p>
     </footer>
 
     <script>
@@ -603,7 +600,6 @@
             hamburger.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
         }
-
         function closeDrawer() {
             mobileDrawer.classList.remove('open');
             drawerOverlay.classList.remove('open');
@@ -611,19 +607,47 @@
             hamburger.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         }
-
         hamburger.addEventListener('click', () => {
             mobileDrawer.classList.contains('open') ? closeDrawer() : openDrawer();
         });
-
         drawerOverlay.addEventListener('click', closeDrawer);
         document.querySelectorAll('.drawer-link').forEach(link => link.addEventListener('click', closeDrawer));
+
+        // ── Category Filter ──
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const sections = document.querySelectorAll('section[data-category]');
+
+        // Show per-category counts in the filter buttons
+        filterBtns.forEach(btn => {
+            const f = btn.dataset.filter;
+            let count;
+            if (f === 'all') {
+                count = document.querySelectorAll('.card').length;
+            } else {
+                const sec = document.querySelector('section[data-category="' + f + '"]');
+                count = sec ? sec.querySelectorAll('.card').length : 0;
+            }
+            btn.innerHTML += ' <span class="count">' + count + '</span>';
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                sections.forEach(sec => {
+                    sec.classList.toggle('hidden', filter !== 'all' && sec.dataset.category !== filter);
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
 
         // ── Scroll Animations ──
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.08 });
@@ -632,4 +656,5 @@
     </script>
 
 </body>
+
 </html>
