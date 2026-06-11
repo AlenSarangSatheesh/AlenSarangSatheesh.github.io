@@ -22,7 +22,7 @@
             --bg-elev-2: #161d28;
             --text: #e6edf3;
             --text-dim: #8b96a5;
-            --text-faint: #5b6675;
+            --text-faint: #7a8492;
             --accent: #00e5a0;
             --accent-2: #38bdf8;
             --accent-dim: rgba(0, 229, 160, 0.12);
@@ -43,6 +43,7 @@
 
         html {
             scroll-behavior: smooth;
+            color-scheme: dark;
         }
 
         body {
@@ -103,6 +104,37 @@
         ::selection {
             background: var(--accent);
             color: var(--bg);
+        }
+
+        /* ── Accessibility ── */
+        .skip-link {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -130%);
+            background: var(--accent);
+            color: var(--bg);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.6rem 1.3rem;
+            border-radius: 0 0 8px 8px;
+            z-index: 2000;
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
+            transform: translate(-50%, 0);
+            outline: none;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        .btn:focus-visible,
+        .contact-item:focus-visible,
+        .hamburger:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
         }
 
         .mono {
@@ -217,9 +249,12 @@
         .hamburger {
             display: none;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
             gap: 5px;
             cursor: pointer;
-            padding: 4px;
+            min-width: 44px;
+            min-height: 44px;
             z-index: 1100;
             background: none;
             border: none;
@@ -726,12 +761,15 @@
 
 <body>
 
+    <a href="#main" class="skip-link">Skip to content</a>
+
     <!-- Mobile Drawer -->
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
         <a href="#services" class="drawer-link">services</a>
         <a href="#process" class="drawer-link">process</a>
         <a href="projects.html" class="drawer-link">projects</a>
+        <a href="services.html" class="drawer-link">hire-us</a>
         <a href="#contact" class="drawer-link">contact</a>
     </nav>
 
@@ -742,6 +780,7 @@
                 <li><a href="#services">services</a></li>
                 <li><a href="#process">process</a></li>
                 <li><a href="projects.html">projects</a></li>
+                <li><a href="services.html">hire-us</a></li>
                 <li><a href="#contact">contact</a></li>
             </ul>
         </nav>
@@ -749,6 +788,8 @@
             <span></span><span></span><span></span>
         </button>
     </header>
+
+    <main id="main">
 
     <!-- HERO -->
     <section class="hero">
@@ -914,6 +955,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <footer>
         <p><span class="prompt">~/</span>satheesh &mdash; &copy; 2026 Alen Sarang Satheesh. Built &amp; secured.</p>
