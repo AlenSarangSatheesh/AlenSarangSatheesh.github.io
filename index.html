@@ -614,36 +614,104 @@
             text-align: center;
         }
 
-        /* ── Process ── */
-        .process-grid {
+        /* ── Pricing / Hire Us ── */
+        .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            counter-reset: step;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.4rem;
+            align-items: stretch;
         }
 
-        .process-step {
-            border-left: 2px solid var(--border);
-            padding: 0.3rem 0 0.3rem 1.4rem;
+        .price-card {
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.1rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 44px var(--shadow);
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--accent);
+            box-shadow: 0 14px 40px rgba(74, 107, 66, 0.14);
             position: relative;
         }
 
-        .process-step::before {
-            counter-increment: step;
-            content: '0' counter(step);
+        .featured-badge {
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg);
             font-family: var(--font-mono);
-            color: var(--accent);
-            font-size: 0.85rem;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 0.25rem 0.9rem;
+            border-radius: 100px;
+            white-space: nowrap;
         }
 
-        .process-step h4 {
-            font-size: 1.1rem;
-            margin: 0.3rem 0 0.5rem;
+        .price-card .plan {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
         }
 
-        .process-step p {
+        .price-card .amount {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .price-card .amount small {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dim);
+        }
+
+        .price-card .desc {
             color: var(--text-dim);
             font-size: 0.9rem;
+            margin: 0.7rem 0 1.3rem;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin-bottom: 1.8rem;
+            flex-grow: 1;
+        }
+
+        .price-card ul li {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--text);
+            padding: 0.32rem 0;
+        }
+
+        .price-card ul li i {
+            color: var(--accent);
+            font-size: 0.78rem;
+        }
+
+        .price-card .btn {
+            width: 100%;
+            justify-content: center;
         }
 
         /* ── Contact ── */
@@ -763,36 +831,14 @@
 
     <a href="#main" class="skip-link">Skip to content</a>
 
-    <!-- Mobile Drawer -->
-    <div class="drawer-overlay" id="drawerOverlay"></div>
-    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation">
-        <a href="#services" class="drawer-link">services</a>
-        <a href="#process" class="drawer-link">process</a>
-        <a href="projects.html" class="drawer-link">projects</a>
-        <a href="services.html" class="drawer-link">hire-us</a>
-        <a href="#contact" class="drawer-link">contact</a>
-    </nav>
-
     <header>
         <div class="logo">Alen Sarang Satheesh<span class="cursor"></span></div>
-        <nav aria-label="Desktop navigation">
-            <ul>
-                <li><a href="#services">services</a></li>
-                <li><a href="#process">process</a></li>
-                <li><a href="projects.html">projects</a></li>
-                <li><a href="services.html">hire-us</a></li>
-                <li><a href="#contact">contact</a></li>
-            </ul>
-        </nav>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
     </header>
 
     <main id="main">
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="hero-text">
             <div class="status-chip">
                 <span class="status-dot"></span> Reliable international outsourcing partner
@@ -892,30 +938,54 @@
         </div>
     </section>
 
-    <!-- PROCESS -->
-    <section id="process">
+    <!-- HIRE US -->
+    <section id="hire-us">
         <div class="section-head fade-up">
-            <p class="section-kicker">// how we work together</p>
-            <h2 class="section-title">Process</h2>
-            <p class="section-sub">Clear, lightweight, and transparent from first message to final handover.</p>
+            <p class="section-kicker">// engagement models</p>
+            <h2 class="section-title">Hire Us</h2>
+            <p class="section-sub">Pick the model that fits your project. Every engagement starts with a free scoping call and a written quote &mdash; no surprises.</p>
         </div>
 
-        <div class="process-grid">
-            <div class="process-step fade-up fade-up-d1">
-                <h4>Scope</h4>
-                <p>We talk through your goals, constraints, and budget, then agree on a clear deliverable and timeline.</p>
+        <div class="pricing-grid">
+            <div class="price-card fade-up fade-up-d1">
+                <p class="plan">Hourly / Consulting</p>
+                <p class="amount">Custom <small>/ hour</small></p>
+                <p class="desc">For advice, small fixes, and ongoing development where scope evolves week to week.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Pay only for time used</li>
+                    <li><i class="fas fa-check"></i> Technical consulting included</li>
+                    <li><i class="fas fa-check"></i> Weekly time reports</li>
+                    <li><i class="fas fa-check"></i> No minimum commitment</li>
+                </ul>
+                <a href="#contact" class="btn btn-ghost">Discuss Your Needs</a>
             </div>
-            <div class="process-step fade-up fade-up-d1">
-                <h4>Build / Test</h4>
-                <p>I develop the software or run the assessment, sharing progress so there are no surprises.</p>
+
+            <div class="price-card featured fade-up fade-up-d2">
+                <span class="featured-badge">Most Popular</span>
+                <p class="plan">Fixed-Price Project</p>
+                <p class="amount">&#8377;4,999+ <small>or $499+</small></p>
+                <p class="desc">A clearly scoped deliverable at a price agreed before work starts. Best for most projects.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Written scope &amp; timeline</li>
+                    <li><i class="fas fa-check"></i> Progress updates</li>
+                    <li><i class="fas fa-check"></i> Security review included</li>
+                    <li><i class="fas fa-check"></i> Source code &amp; docs</li>
+                    <li><i class="fas fa-check"></i> Post-delivery fixes</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Get a Fixed Quote</a>
             </div>
-            <div class="process-step fade-up fade-up-d2">
-                <h4>Report</h4>
-                <p>You get working code or a clear, prioritized findings report &mdash; written to be acted on, not filed away.</p>
-            </div>
-            <div class="process-step fade-up fade-up-d3">
-                <h4>Support</h4>
-                <p>Fixes, retests, and follow-up so the result holds up after the engagement ends.</p>
+
+            <div class="price-card fade-up fade-up-d3">
+                <p class="plan">Monthly Retainer</p>
+                <p class="amount">Custom <small>/ month</small></p>
+                <p class="desc">Ongoing maintenance, feature development, and security monitoring.</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> Priority response</li>
+                    <li><i class="fas fa-check"></i> Maintenance &amp; updates</li>
+                    <li><i class="fas fa-check"></i> Periodic security checks</li>
+                    <li><i class="fas fa-check"></i> Reserved capacity</li>
+                </ul>
+                <a href="#contact" class="btn btn-ghost">Plan a Retainer</a>
             </div>
         </div>
     </section>
